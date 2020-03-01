@@ -21,20 +21,22 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 12
+      java: corretto11
     commands:
       # Install packages or any pre-reqs in this phase.
       # Upgrading SAM CLI to latest version
       - pip3 install --upgrade aws-sam-cli
       - sam --version
-      # Installing project dependencies
-      - cd hello-world
-      - npm install
-  
+      
   pre_build:
     commands:
       # Run tests, lint scripts or any other pre-build checks.
-      - npm run test
+      - pwd
+      - ls -lah
+      - cd HelloWorldFunction
+      - mvn test
+      - java -version
+      - mvn -version
 
   build:
     commands:
@@ -54,7 +56,7 @@ artifacts:
     - packaged.yaml
 ```
 
-**Save the file**. It should look like this (take a moment to understand it):
+**Save the file**. Take a moment to understand the buildspec file.
 
 ![CreateBuildspec](/images/screenshot-buildspec.png)
 

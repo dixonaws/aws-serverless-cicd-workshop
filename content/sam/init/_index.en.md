@@ -13,20 +13,21 @@ sam init
 
 It will prompt for project configuration parameters: 
 
-#### Type `1` to select AWS Quick Start Templates
+1. Type `1` to select AWS Quick Start Templates
 ![samInit](/images/screenshot-sam-init-1.png)
 
-#### Choose `nodejs12.x` for runtime
-![samInit](/images/screenshot-sam-init-1.1.png)
+2. Choose `Java 11` (5) for runtime
 
-#### Leave default `sam-app` for project name
-![samInit](/images/screenshot-sam-init-2.png)
+3. Choose `maven` for the dependency manager
 
-#### Type `Y` to accept download from GitHub
-![samInit](/images/screenshot-sam-init-3.png)
+4. Leave default `sam-app` for project name
 
-<!-- #### Type `1` to select the `Hello World Example`
-![samInit](/images/screenshot-sam-init-5.png) -->
+5. Type `Y` to accept download from GitHub
+
+- The template wil be downloaded from the github template repository.
+
+6. Type `1` to select the `Hello World Example`
+
 
 {{% notice tip %}}
 This command supports cookiecutter templates, so you could write your own custom scaffolding templates and specify them using the location flag, For example: sam init --location git+ssh://git@github.com/aws-samples/cookiecutter-aws-sam-python.git.

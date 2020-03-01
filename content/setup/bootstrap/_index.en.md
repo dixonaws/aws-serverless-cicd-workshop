@@ -14,7 +14,7 @@ We have put together a bootstrap script that will make the upgrade easier for yo
 following command from your Cloud9 terminal. 
 
 ```
-wget https://serverless-cicd-pipeline-artifacts-cn2m0gigrb70.s3.amazonaws.com/bootstrap.sh
+wget https://raw.githubusercontent.com/dixonaws/aws-serverless-cicd-workshop/master/bootstrap.sh
 ```
 
 Then give it permissions to execute: 
@@ -43,3 +43,15 @@ sam --version
 ```
 
 You should see *SAM CLI, version 0.31.1* or greater.
+
+```
+java -version
+```
+
+You should see *OpenJDK Runtime Environment Corretto-11.0.6.10.1* or similar.
+
+```
+mvn -version
+```
+
+You should see *Maven version 3.5.4.* 
