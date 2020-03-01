@@ -10,6 +10,11 @@ the cloud9 domain, or connecting to the workspace might be impacted.
 Cloud9 requires third-party-cookies. You can whitelist the [specific domains]( https://docs.aws.amazon.com/cloud9/latest/user-guide/troubleshooting.html#troubleshooting-env-loading).
 {{% /notice %}}
 
+{{% notice warning %}}
+Please ensure that you are using eu-central-1 (Frankfurt) for this workshop. 
+{{% /notice %}}
+
+
 ### Navigate to the Cloud9 console:
 
 Navigate to the Cloud9 console: [https://console.aws.amazon.com/cloud9](https://console.aws.amazon.com/cloud9)

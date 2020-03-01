@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Let&#39;s talk about artifacts on </title>
+    <link>/manualdeploy/bucket.html</link>
+    <description>Recent content in Let&#39;s talk about artifacts on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 03 Oct 2019 10:54:25 -0700</lastBuildDate>
+    
+	<atom:link href="/manualdeploy/bucket/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

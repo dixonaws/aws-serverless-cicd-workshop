@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.64.1" />
+    <meta name="description" content="Building a CI/CD pipeline for Serverless applications">
+<meta name="author" content="Fernando Dingler &lt;fdingler@amazon.com&gt;">
+
+    <link rel="shortcut icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+<link rel="icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+    <title>Deploy the app :: </title>
+
+    
+    <link href="../css/nucleus.css" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="../css/hybrid.css" rel="stylesheet">
+    <link href="../css/featherlight.min.css" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="../css/auto-complete.css" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css" rel="stylesheet">
+    <link href="../css/theme.css" rel="stylesheet">
+    <link href="../css/hugo-theme.css" rel="stylesheet">
+    
+      <link href="../css/theme-aws.css" rel="stylesheet">
+    
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/manualdeploy/deploy.html">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <div id="aws-logo">
+    <a href="../" title="Go home">
+        <img style="vertical-align:middle" src="../images/logo.png" height="70px" />
+    </a>
+</div>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../js/lunr.min.js"></script>
+<script type="text/javascript" src="../js/auto-complete.js"></script>
+<script type="text/javascript">
+    
+        var baseurl = "";
+    
+</script>
+<script type="text/javascript" src="../js/search.js"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/setup.html" title="Setup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../setup.html">
+          <b>0. </b>Setup
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/setup/cloud9.html" title="Create a Cloud9 Workspace" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../setup/cloud9.html">
+          Create a Cloud9 Workspace
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/setup/bootstrap.html" title="Upgrade SAM CLI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../setup/bootstrap.html">
+          Upgrade SAM CLI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/sam.html" title="Create a new SAM app" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../sam.html">
+          <b>1. </b>Create a new SAM app
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sam/init.html" title="Initialize project" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../sam/init.html">
+          Initialize project
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sam/architecture.html" title="Project Architecture" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../sam/architecture.html">
+          Project Architecture
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sam/template.html" title="Explore the SAM template" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../sam/template.html">
+          Explore the SAM template
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sam/code.html" title="Explore the Lambda code" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../sam/code.html">
+          Explore the Lambda code
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/local.html" title="Run project locally" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../local.html">
+          <b>2. </b>Run project locally
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/local/dependencies.html" title="Install dependencies" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../local/dependencies.html">
+          Install dependencies
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/local/run.html" title="Run using SAM CLI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../local/run.html">
+          Run using SAM CLI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/local/change.html" title="Make a code change" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../local/change.html">
+          Make a code change
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/local/unittests.html" title="Run the unit tests" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../local/unittests.html">
+          Run the unit tests
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/manualdeploy.html" title="Manual Deploy to AWS" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="../manualdeploy.html">
+          <b>3. </b>Manual Deploy to AWS
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/manualdeploy/bucket.html" title="Let&#39;s talk about artifacts" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../manualdeploy/bucket.html">
+          Let&#39;s talk about artifacts
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/manualdeploy/build.html" title="Build the app" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../manualdeploy/build.html">
+          Build the app
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/manualdeploy/deploy.html" title="Deploy the app" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="../manualdeploy/deploy.html">
+          Deploy the app
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/manualdeploy/verify.html" title="Verify deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../manualdeploy/verify.html">
+          Verify deployment
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe.html" title="Build the pipeline" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe.html">
+          <b>4. </b>Build the pipeline
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe/gitrepo.html" title="Create a Git Repository" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe/gitrepo.html">
+          Create a Git Repository
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe/credhelper.html" title="Configure credentials" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe/credhelper.html">
+          Configure credentials
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe/gitpush.html" title="Push the code" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe/gitpush.html">
+          Push the code
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe/pipeline.html" title="Creating the pipeline" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe/pipeline.html">
+          Creating the pipeline
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe/pipeline/launch.html" title="Launch template" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe/pipeline/launch.html">
+          Launch template
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe/verify.html" title="Verify creation" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe/verify.html">
+          Verify creation
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe/buildspec.html" title="Write the buildspec file" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe/buildspec.html">
+          Write the buildspec file
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe/done.html" title="Verify pipeline running" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe/done.html">
+          Verify pipeline running
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/buildpipe/launch.html" title="" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../buildpipe/launch.html">
+          
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries.html" title="Canary Deployments" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries.html">
+          <b>5. </b>Canary Deployments
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries/intro.html" title="How does it work" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries/intro.html">
+          How does it work
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries/sam.html" title="Update SAM template" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries/sam.html">
+          Update SAM template
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries/monitor.html" title="Monitor canary health" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries/monitor.html">
+          Monitor canary health
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries/codedeploy.html" title="Verify in CodeDeploy" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries/codedeploy.html">
+          Verify in CodeDeploy
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries/rollbacks.html" title="Rollbacks" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries/rollbacks.html">
+          Rollbacks
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries/rollbacks/waitfordeploy.html" title="Wait for deployment to start" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries/rollbacks/waitfordeploy.html">
+          Wait for deployment to start
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries/rollbacks/faketraffic.html" title="Invoke the canary" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries/rollbacks/faketraffic.html">
+          Invoke the canary
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries/rollbacks/codedeploy.html" title="Watch CodeDeploy rollback" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries/rollbacks/codedeploy.html">
+          Watch CodeDeploy rollback
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/canaries/finished.html" title="The end" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../canaries/finished.html">
+          The end
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <span>
+    <a href="https://github.com/aws-samples/aws-serverless-cicd-workshop">
+        <i class="fab fa-github fa-lg"></i>
+        GitHub
+    </a>
+</span>
+<left>
+    <h5 class="copyright">&copy; 2019 Amazon Web Services, Inc. or its Affiliates. All rights reserved.<h5>
+</left>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/aws-samples/serverless-workshopsmanualdeploy/deploy/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../'>CI/CD for Serverless Applications</a> > <a href='../manualdeploy.html'>Manual Deploy to AWS</a> > Deploy the app
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#confirm-deployment">Confirm deployment</a></li>
+        <li><a href="#deployment-completed">Deployment completed</a></li>
+        <li><a href="#what-just-happened">What just happened?</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Deploy the app
+            </h1>
+          
+
+        
+
+
+
+
+	<p>The <code>sam deploy</code> command deploys your application by launching a CloudFormation stack. This command now comes with a guided interactive mode, which you can enable by specifying the <em>&ndash;guided</em> parameter. It walks you through the parameters required for deployment, provides default options, and saves these options in a configuration file in your project folder.</p>
+<p>Run the following command in the same directory level where the <em>packaged.yaml</em> is located:</p>
+<pre><code>sam deploy --guided
+</code></pre><p>It will ask for certain input parameters, like so:</p>
+<p><img src="../images/screenshot-sam-deploy-guided.png" alt="SamDeploy"></p>
+<h3 id="confirm-deployment">Confirm deployment</h3>
+<p>At some point, SAM will ask for deployment confirmation. This is possible because it first creates a CloudFormation ChangeSet, and then it asks for confirmation to execute it. This is kind of like a <em>dry run deployment</em> and is a best practice when doing deployments via CloudFormation. Type <code>y</code> to confirm.</p>
+<p><img src="../images/screenshot-sam-deploy-guided-2.png" alt="SamDeploy"></p>
+<h3 id="deployment-completed">Deployment completed</h3>
+<p>This command might take a few minutes to finish because it is creating the resources (Lambda function, API Gateway and IAM roles) on the AWS account. When it completes successfully, you should see an output similar to the following:</p>
+<p><img src="../images/screenshot-sam-deploy.png" alt="SamDeploy"></p>
+<h3 id="what-just-happened">What just happened?</h3>
+<p>The guided deployment does few things for you. Let&rsquo;s take a quick look at what happened under the hood during the guided deployment to understand this process better.</p>
+<p><strong>1)</strong> Your codebase gets packaged in a zip file.<br>
+<strong>2)</strong> SAM creates an S3 bucket in your account, if it doesn&rsquo;t already exist.<br>
+<strong>3)</strong> Zip file is uploaded to the S3 bucket.<br>
+<strong>4)</strong> SAM creates the <a href="../manualdeploy/bucket.html">packaged template</a> that references the location of the zip file on S3.<br>
+<strong>5)</strong> This template is also uploaded to the S3 bucket.<br>
+<strong>6)</strong> SAM starts the deployment via CloudFormation ChangeSets.</p>
+<p>The first time you do a guided deployment, a new file <code>samconfig.toml</code> is created in the root of your project with your specified deployment parameters, this is so that the next time you execute <code>sam deploy</code>, it uses the same parameters without having you to enter them again.</p>
+<p><img src="../images/screenshot-sam-config-toml.png" alt="SamDeploy"></p>
+<p>If you want to learn more about guided deployments and the samconfig.toml file, here is a good Blog Post: <a href="https://aws.amazon.com/blogs/compute/a-simpler-deployment-experience-with-aws-sam-cli">https://aws.amazon.com/blogs/compute/a-simpler-deployment-experience-with-aws-sam-cli</a>.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../manualdeploy/build.html" title="Build the app"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../manualdeploy/verify.html" title="Verify deployment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../js/clipboard.min.js"></script>
+    <script src="../js/perfect-scrollbar.min.js"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/featherlight.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../js/modernizr.custom-3.6.0.js"></script>
+    <script src="../js/learn.js"></script>
+    <script src="../js/hugo-learn.js"></script>
+
+    <link href="../mermaid/mermaid.css" rel="stylesheet" />
+    <script src="../mermaid/mermaid.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

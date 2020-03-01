@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/</loc>
+  </url>
+  
+  <url>
+    <loc>/buildpipe/pipeline/launch.html</loc>
+    <lastmod>2020-01-03T19:29:29-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries/rollbacks/waitfordeploy.html</loc>
+    <lastmod>2019-11-12T13:21:38-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/buildpipe/gitrepo.html</loc>
+    <lastmod>2019-10-03T15:26:06-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/manualdeploy/bucket.html</loc>
+    <lastmod>2019-10-03T10:54:25-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/local/dependencies.html</loc>
+    <lastmod>2019-10-02T16:20:25-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sam/init.html</loc>
+    <lastmod>2019-10-02T14:22:32-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/setup/cloud9.html</loc>
+    <lastmod>2019-10-02T10:56:08-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/setup.html</loc>
+    <lastmod>2019-10-02T10:19:58-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sam/architecture.html</loc>
+    <lastmod>2019-11-01T16:12:35-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries/rollbacks/faketraffic.html</loc>
+    <lastmod>2019-11-12T13:21:47-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries/intro.html</loc>
+    <lastmod>2019-11-11T14:45:51-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/setup/bootstrap.html</loc>
+    <lastmod>2019-10-16T16:29:54-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/buildpipe/credhelper.html</loc>
+    <lastmod>2019-10-03T16:26:02-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/manualdeploy/build.html</loc>
+    <lastmod>2019-10-03T11:25:04-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/local/run.html</loc>
+    <lastmod>2019-10-02T16:36:58-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sam/template.html</loc>
+    <lastmod>2019-10-02T14:45:41-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sam.html</loc>
+    <lastmod>2019-10-02T14:08:23-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries/rollbacks/codedeploy.html</loc>
+    <lastmod>2019-11-12T13:29:37-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries/sam.html</loc>
+    <lastmod>2019-11-11T14:46:02-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/buildpipe/gitpush.html</loc>
+    <lastmod>2019-10-03T16:22:07-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/local/change.html</loc>
+    <lastmod>2019-10-03T08:52:21-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/local.html</loc>
+    <lastmod>2019-10-02T16:10:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sam/code.html</loc>
+    <lastmod>2019-10-02T15:21:26-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/buildpipe/pipeline.html</loc>
+    <lastmod>2019-11-01T15:26:09-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/manualdeploy/deploy.html</loc>
+    <lastmod>2019-10-03T13:33:54-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/manualdeploy.html</loc>
+    <lastmod>2019-10-03T09:25:03-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/local/unittests.html</loc>
+    <lastmod>2019-10-03T09:05:09-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries/monitor.html</loc>
+    <lastmod>2019-11-11T16:24:12-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries/codedeploy.html</loc>
+    <lastmod>2019-11-11T16:01:01-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/buildpipe/verify.html</loc>
+    <lastmod>2019-11-04T16:10:09-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/buildpipe.html</loc>
+    <lastmod>2019-10-03T14:25:05-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/manualdeploy/verify.html</loc>
+    <lastmod>2019-10-03T13:52:29-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries/rollbacks.html</loc>
+    <lastmod>2019-11-12T08:00:36-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/buildpipe/buildspec.html</loc>
+    <lastmod>2019-10-04T12:54:48-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/buildpipe/done.html</loc>
+    <lastmod>2019-11-05T14:20:52-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries.html</loc>
+    <lastmod>2019-10-04T16:07:58-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/canaries/finished.html</loc>
+    <lastmod>2019-11-20T21:13:50-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/buildpipe/launch.html</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories.html</loc>
+  </url>
+  
+  <url>
+    <loc>/tags.html</loc>
+  </url>
+  
+</urlset>

@@ -4,11 +4,14 @@ date = 2019-10-16T16:29:54-07:00
 weight = 10
 +++
 
-One of the tools this workshop relies on, is the AWS SAM Command Line Interface. However, we need a newer version than what Cloud9 has pre-installed. The version we are targetting is **SAM CLI, version 0.31.1 or greater**.
+One of the tools this workshop relies on, is the AWS SAM Command Line Interface. However, we need a newer version 
+than what Cloud9 has pre-installed. The version we are targetting is **SAM CLI, version 0.31.1 or greater**. We will also need
+to install a JDK and Maven (tested with Amazon Corretto Java 11(.)
 
 ### Bootstrap Script
 
-We have put together a bootstrap script that will make the upgrade easier for you. Download it by running the following command from your Cloud9 terminal. 
+We have put together a bootstrap script that will make the upgrade easier for you. Download it by running the 
+following command from your Cloud9 terminal. 
 
 ```
 wget https://serverless-cicd-pipeline-artifacts-cn2m0gigrb70.s3.amazonaws.com/bootstrap.sh

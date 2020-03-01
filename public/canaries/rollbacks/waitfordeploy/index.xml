@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wait for deployment to start on </title>
+    <link>/canaries/rollbacks/waitfordeploy.html</link>
+    <description>Recent content in Wait for deployment to start on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 12 Nov 2019 13:21:38 -0800</lastBuildDate>
+    
+	<atom:link href="/canaries/rollbacks/waitfordeploy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

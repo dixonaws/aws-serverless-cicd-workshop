@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Project Architecture on </title>
+    <link>/sam/architecture.html</link>
+    <description>Recent content in Project Architecture on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 01 Nov 2019 16:12:35 -0700</lastBuildDate>
+    
+	<atom:link href="/sam/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
