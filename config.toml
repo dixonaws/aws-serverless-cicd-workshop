@@ -3,7 +3,7 @@ CanonifyURLs=true
 languageCode = "en-US"
 defaultContentLanguage = "en"
 
-title = "CI/CD for Serverless Applications"
+title = "CI/CD for Serverless Applications (Java)"
 theme = "learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
@@ -13,10 +13,13 @@ sectionPagesMenu = "main"
 pygmentsCodeFences = true
 pygmentsStyle = "monokai"
 
+[site]
+BaseURL="/index.html"
+
 [params]
   editURL = "https://github.com/dixonaws/aws-serverless-cicd-workshop/tree/master/workshop/content/"
   description = "Building a CI/CD pipeline for Serverless applications (Java)"
-  author = "Fernando Dingler <fdingler@amazon.com>"
+  author = "Fernando Dingler <fdingler@amazon.com>, John Dixon <dixonaws@amazon.com>"
   disableBreadcrumb = false
   disableNextPrev = false
   themeVariant = "aws"
