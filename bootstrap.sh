@@ -67,8 +67,12 @@ function install_corretto_jdk11() {
     _logger "[+] Installing JDK11 (Amazon Corretto)..."
     wget https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.tar.gz
     sudo tar zxf amazon-corretto-11-x64-linux-jdk.tar.gz -C /usr/local
+    
+    [ -e /usr/local/amazon-corretto-jdk11 ] && sudo rm -Rf /usr/local/amazon-corretto-jdk11
     sudo ln -s /usr/local/amazon-corretto-11.0.6.10.1-linux-x64/ /usr/local/amazon-corretto-jdk11
-    rm amazon-corretto-11-x64-linux-jdk.tar.gz
+    
+    rm -f amazon-corretto-11-x64-linux-jdk.tar.gz
+    
     echo "export JAVA_HOME=/usr/local/amazon-corretto-jdk11" >> ~/.profile
     sudo alternatives --install /usr/bin/java java /usr/local/amazon-corretto-jdk11/bin/java 2
     sudo alternatives --set java /usr/local/amazon-corretto-jdk11/bin/java
@@ -77,19 +81,21 @@ function install_corretto_jdk11() {
     sudo alternatives --set javac /usr/local/amazon-corretto-jdk11/bin/javac
 
     # for some reason alternatives does not work to install jar, so we just manually create a symlink instead
-    sudo rm /usr/local/jar
+    [ -e /usr/bin/jar ] && sudo rm /usr/bin/jar
     sudo ln -s /usr/local/amazon-corretto-jdk11/bin/jar /usr/bin/jar
 }
 
 function install_maven() {
     _logger "[+] Installing Maven 3.6.3..."
-    https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-    tar xvf apache-maven-3.6.3-bin.tar.gz -C /usr/local
+    wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+    sudo tar xvf apache-maven-3.6.3-bin.tar.gz -C /usr/local
+    [ -e /usr/local/apache-maven ] && sudo rm /usr/local/apache-maven
     sudo ln -s /usr/local/apache-maven-3.6.3 /usr/local/apache-maven
+    rm apache-maven-3.6.3-bin.tar.gz
     
     echo "export M2_HOME=/usr/local/apache-maven" >> ~/.profile
-    echo "export M2=$M2_HOME/bin" >> ~/.profile
-    echo "export PATH=$M2:$PATH" ~/.profile
+    echo "export M2=/usr/local/apache-maven/bin" >> ~/.profile
+    echo "export PATH=/usr/local/apache-maven/bin:$PATH" >> ~/.profile
     
 }
 
