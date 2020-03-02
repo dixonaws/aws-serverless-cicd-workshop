@@ -96,7 +96,7 @@ function install_maven() {
     echo "export M2_HOME=/usr/local/apache-maven" >> ~/.profile
     echo "export M2=/usr/local/apache-maven/bin" >> ~/.profile
     echo "export PATH=/usr/local/apache-maven/bin:$PATH" >> ~/.profile
-    echo "export PATH=/usr/local/apache-maven/bin:$PATH" >> ~/.bashrc
+    
     
 }
 
@@ -109,8 +109,10 @@ function main() {
     install_maven
     
     echo -e "${RED} [!!!!!!!!!] Open up a new terminal to reflect changes ${NC}"
-    _logger "[+] Restarting Shell to reflect changes"
-    exec ${SHELL}
+    #_logger "[+] Restarting Shell to reflect changes"
+    #exec ${SHELL}
+    
+    source ~/.profile
 }
 
 main
