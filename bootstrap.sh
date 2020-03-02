@@ -61,12 +61,46 @@ function install_linuxbrew() {
     echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 }
 
+function install_corretto_jdk11() {
+    _logger "[+] Removing default JDK..."
+    sudo yum remove java-1.7.0-openjdk -y
+    _logger "[+] Installing JDK11 (Amazon Corretto)..."
+    wget https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.tar.gz
+    sudo tar zxf amazon-corretto-11-x64-linux-jdk.tar.gz -C /usr/local
+    sudo ln -s /usr/local/amazon-corretto-11.0.6.10.1-linux-x64/ /usr/local/amazon-corretto-jdk11
+    rm amazon-corretto-11-x64-linux-jdk.tar.gz
+    echo "export JAVA_HOME=/usr/local/amazon-corretto-jdk11" >> ~/.profile
+    sudo alternatives --install /usr/bin/java java /usr/local/amazon-corretto-jdk11/bin/java 2
+    sudo alternatives --set java /usr/local/amazon-corretto-jdk11/bin/java
+
+    sudo alternatives --install /usr/bin/javac javac /usr/local/amazon-corretto-jdk11/bin/javac 2
+    sudo alternatives --set javac /usr/local/amazon-corretto-jdk11/bin/javac
+
+    # for some reason alternatives does not work to install jar, so we just manually create a symlink instead
+    sudo rm /usr/local/jar
+    sudo ln -s /usr/local/amazon-corretto-jdk11/bin/jar /usr/bin/jar
+}
+
+function install_maven() {
+    _logger "[+] Installing Maven 3.6.3..."
+    https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+    tar xvf apache-maven-3.6.3-bin.tar.gz -C /usr/local
+    sudo ln -s /usr/local/apache-maven-3.6.3 /usr/local/apache-maven
+    
+    echo "export M2_HOME=/usr/local/apache-maven" >> ~/.profile
+    echo "export M2=$M2_HOME/bin" >> ~/.profile
+    echo "export PATH=$M2:$PATH" ~/.profile
+    
+}
+
 function main() {
     upgrade_existing_packages
     install_linuxbrew
     install_utility_tools
     upgrade_sam_cli
-
+    install_corretto_jdk11
+    install_maven
+    
     echo -e "${RED} [!!!!!!!!!] Open up a new terminal to reflect changes ${NC}"
     _logger "[+] Restarting Shell to reflect changes"
     exec ${SHELL}

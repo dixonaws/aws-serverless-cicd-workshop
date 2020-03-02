@@ -14,7 +14,7 @@ sudo rm -rf /usr/local/apache-maven/
 # get amazon coretto JDK
 wget https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.tar.gz
 tar zxpvf amazon-corretto-11-x64-linux-jdk.tar.gz
-sudo cp -Rvf amazon-corretto-11.0.6.10.1-linux-x64 /usr/local
+sudo cp -Rf amazon-corretto-11.0.6.10.1-linux-x64 /usr/local
 sudo ln -s /usr/local/amazon-corretto-11.0.6.10.1-linux-x64/ /usr/local/amazon-corretto-jdk11
 rm amazon-corretto-11-x64-linux-jdk.tar.gz
 rm -Rvf amazon-corretto-11.0.6.10.1-linux-x64/
