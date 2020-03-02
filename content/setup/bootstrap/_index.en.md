@@ -29,6 +29,12 @@ And run it:
 ./bootstrap.sh
 ```
 
+One last thing for setup... ensure that the environment variables are loaded:
+
+```
+source ~/.profile
+```
+
 **THIS MAY TAKE A FEW MINUTES TO COMPLETE.**
 
 Example output: 
@@ -54,4 +60,4 @@ You should see *OpenJDK Runtime Environment Corretto-11.0.6.10.1* or similar.
 mvn -version
 ```
 
-You should see *Maven version 3.5.4.* 
+You should see *Maven version 3.6.3* or greater. 

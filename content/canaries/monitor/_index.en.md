@@ -12,23 +12,24 @@ Add the following alarm definition to the `template.yaml` file in the _Resources
 
 ```
 CanaryErrorsAlarm:
-  Type: AWS::CloudWatch::Alarm
-  Properties:
-    AlarmDescription: Lambda function canary errors
-    ComparisonOperator: GreaterThanThreshold
-    EvaluationPeriods: 2
-    MetricName: Errors
-    Namespace: AWS/Lambda
-    Period: 60
-    Statistic: Sum
-    Threshold: 0
-    Dimensions:
-      - Name: Resource
-        Value: !Sub "${HelloWorldFunction}:live"
-      - Name: FunctionName
-        Value: !Ref HelloWorldFunction
-      - Name: ExecutedVersion
-        Value: !GetAtt HelloWorldFunction.Version.Version
+ CanaryErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Lambda function canary errors
+      ComparisonOperator: GreaterThanThreshold
+      EvaluationPeriods: 2
+      MetricName: Duration
+      Namespace: AWS/Lambda
+      Period: 60
+      Statistic: Maximum
+      Threshold: 7500
+      Dimensions:
+        - Name: Resource
+          Value: !Sub "${HelloWorldFunction}:live"
+        - Name: FunctionName
+          Value: !Ref HelloWorldFunction
+        - Name: ExecutedVersion
+          Value: !GetAtt HelloWorldFunction.Version.Version```
 ```
 
 And then add the following lines to the _DeploymentPreference_ section of the _HelloWorldFunction_ definition. 
@@ -46,42 +47,48 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   sam-app
 
-  Sample SAM Template for sam-app
-  
+  Sample SAM Template for sam-app-java11
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 20
 
 Resources:
   HelloWorldFunction:
-    Type: AWS::Serverless::Function
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: hello-world/
-      Handler: app.lambdaHandler
-      Runtime: nodejs10.x
+      CodeUri: HelloWorldFunction
+      Handler: helloworld.App::handleRequest
+      Runtime: java11
       AutoPublishAlias: live
       DeploymentPreference:
-        Type: Canary10Percent5Minutes
+        Type: Linear10PercentEvery1Minute
         Alarms:
           - !Ref CanaryErrorsAlarm
+
+      MemorySize: 512
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          PARAM1: VALUE
       Events:
         HelloWorld:
-          Type: Api
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /hello
             Method: get
-            
+      
   CanaryErrorsAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmDescription: Lambda function canary errors
       ComparisonOperator: GreaterThanThreshold
       EvaluationPeriods: 2
-      MetricName: Errors
+      MetricName: Duration
       Namespace: AWS/Lambda
       Period: 60
-      Statistic: Sum
-      Threshold: 0
+      Statistic: Maximum
+      Threshold: 7500
       Dimensions:
         - Name: Resource
           Value: !Sub "${HelloWorldFunction}:live"

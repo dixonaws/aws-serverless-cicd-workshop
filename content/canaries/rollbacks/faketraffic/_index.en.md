@@ -9,30 +9,20 @@ weight = 10
 In your terminal, run the following command to invoke the Lambda function:
 
 ```
-aws lambda invoke --function-name \
-$(aws lambda list-functions | jq -r .Functions[0].FunctionName):live \
---payload '{}' \
-response.json
+aws lambda invoke --function-name <your-function-name> --payload '{}' response.json
 ```
 
 Example: 
 
-![LambdaInvoke](/images/screenshot-lambda-invoke.png)
-
-There will be a new file `response.json` created. It contains the response of the lambda invocation. If you open it, you may see the the response of the old Lambda version, or you may see the new one that causes an error. 
-
 **Remember:** During deployment, only 10% of the traffic will be routed to the new version. So, **keep on invoking your lambda many times**. 1 out of 10 invocations should trigger the new broken lambda, which is what you want to cause a rollback.
 
-Here is a command that invokes your function 15 times in a loop. Feel free to run it in your terminal.
+Here is a command that invokes your function every 2 seconds. Feel free to run it in your terminal.
 
 ```
 counter=1
 while [ $counter -le 15 ]
 do
-    aws lambda invoke --function-name \
-    $(aws lambda list-functions | jq -r .Functions[0].FunctionName):live \
-    --payload '{}' \
-    response.json
+    aws lambda invoke --function-name <your-java-function> --payload '{}' response.json
     sleep 1
     ((counter++))
 done

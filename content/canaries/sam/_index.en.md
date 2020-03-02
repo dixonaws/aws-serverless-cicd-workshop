@@ -12,10 +12,7 @@ DeploymentPreference:
     Type: Canary10Percent5Minutes
 ```
 
-It should look like this:  
 **PLEASE CHECK THE CORRECT INDENTATION, IT IS VERY IMPORTANT IN YAML FORMAT.**
-
-![SamCanaryDeployment](/images/screenshot-canary-sam.png)
 
 ### Deployment Preference Types
 

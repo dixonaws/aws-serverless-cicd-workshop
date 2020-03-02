@@ -4,57 +4,94 @@ date = 2019-11-12T08:00:36-08:00
 weight = 30
 +++
 
-Monitoring the health of your canary allows CodeDeploy to make a decision to whether a rollback is needed or not. If any of the CloudWatch Alarms specified gets to ALARM status, CodeDeploy rollsback the deployment automatically. 
+Monitoring the health of your canary allows CodeDeploy to make a decision to whether a rollback 
+is needed or not. If any of the CloudWatch Alarms specified gets to ALARM status, CodeDeploy 
+will roll back the deployment automatically. 
 
 ### Introduce an error on purpose
 
-Lets break the Lambda function on purpose so that the _CanaryErrorsAlarm_ gets triggered during deployment. Update the lambda code in `sam-app/hello-world/app.js` to throw an error on every invocation, like this:
+Lets break the Lambda function on purpose so that the _CanaryErrorsAlarm_ gets triggered during deployment. Update the lambda code to throw an error on every invocation, like this:
+
+First, lets introduce a method called wait(), as below:
 
 ```
-let response;
-
-exports.lambdaHandler = async (event, context) => {
-    throw new Error("This will cause a deployment rollback");
-    // try {
-    //     response = {
-    //         'statusCode': 200,
-    //         'body': JSON.stringify({
-    //             message: 'hello my friend with canaries',
-    //         })
-    //     }
-    // } catch (err) {
-    //     console.log(err);
-    //     return err;
-    // }
-
-    // return response
-};
+public static void wait(int ms){
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
 ```
 
-Make sure to update the unit test, otherwise the build will fail. Comment out every line in the `sam-app/hello-world/tests/unit/test-handler.js` file: 
+Let us have your handleRequest method wait for 10,000ms on each request. Doing this will trigger an alarm in Cloudwatch and 
+automatically roll back our deployment.
 
 ```
-// 'use strict';
+    wait(10000)
+```
 
-// const app = require('../../app.js');
-// const chai = require('chai');
-// const expect = chai.expect;
-// var event, context;
+ 
+Your App.java should look like this when finished:
+```
+package helloworld;
 
-// describe('Tests index', function () {
-//     it('verifies successful response', async () => {
-//         const result = await app.lambdaHandler(event, context)
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-//         expect(result).to.be.an('object');
-//         expect(result.statusCode).to.equal(200);
-//         expect(result.body).to.be.an('string');
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-//         let response = JSON.parse(result.body);
+/**
+ * Handler for requests to Lambda function.
+ */
+public class App implements RequestHandler<Object, Object> {
 
-//         expect(response).to.be.an('object');
-//         expect(response.message).to.be.equal("hello my friend with canaries");
-//     });
-// });
+    public Object handleRequest(final Object input, final Context context) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Content-Type", "application/json");
+        headers.put("X-Custom-Header", "application/json");
+        try {
+            final String pageContents = this.getPageContents("https://checkip.amazonaws.com");
+            String output = String.format("{ \"version\": \"3.0 (intential latency)\", \"message\": \"hello world, my friends!\", \"location\": \"%s\", \"metadata\": \"please deploy all changes through codepipeline for maximum reliability.\" }", pageContents);
+            
+            // interntionally introduce latency
+            wait(10000);
+            
+            return new GatewayResponse(output, headers, 200);
+        } catch (IOException e) {
+            return new GatewayResponse("{}", headers, 500);
+        }
+    }
+
+
+    private String getPageContents(String address) throws IOException{
+        URL url = new URL(address);
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
+            return br.lines().collect(Collectors.joining(System.lineSeparator()));
+        }
+    }
+    
+    public static void wait(int ms){
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+
 ```
 
 ### Push the changes
