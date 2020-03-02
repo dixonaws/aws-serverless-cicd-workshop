@@ -110,6 +110,7 @@ function main() {
     echo -e "${RED} [!!!!!!!!!] Open up a new terminal to reflect changes ${NC}"
     _logger "[+] Restarting Shell to reflect changes"
     exec ${SHELL}
+    source ~/.profile
 }
 
 main
