@@ -7,5 +7,4 @@ hugo
 cd public
 aws s3 sync . s3://www.dixonaws.com/aws-serverless-cdci-workshop/
 cd ..
-aws cloudfront
-aws cloudfront create-invalidation --distribution-id "E1ZEGQOWEQTU7I" --paths "/aws-serverless-cdci-workshop/*"
+aws cloudfront create-invalidation --distribution-id "E1ZEGQOWEQTU7I" --paths "/*"
