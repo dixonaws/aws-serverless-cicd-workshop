@@ -2,3 +2,4 @@
 workshop/themes/*
 .idea/
 public/
+deploy.sh
