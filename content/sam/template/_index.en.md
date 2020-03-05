@@ -25,9 +25,11 @@ This section defines properties common to all your Serverless functions and APIs
 ![SAMTemplateGlobals](/images/screenshot-sam-template-3.png)
 
 ### Hello World Function
-The following section creates a Lambda function with an IAM execution role. It also specifies that the code for this Lambda function is located under a folder named _hello-world_, and that its entrypoint is a function named _lambdaHandler_ within a file named _app.js_. 
+The following section creates a Lambda function with an IAM execution role. It also specifies that the code for 
+this Lambda function is located under a folder named _hello-world_, and that its 
+entrypoint is a function named _handleRequest_ within a file named _HelloWorldFunction.java_. 
 
-![SAMTemplateFunction](/images/screenshot-sam-template-4.png) 
+![SAMTemplate](/images/screenshot-init-sam-template.png) 
 
 Notice that the IAM role is not explicitly specified, this is because SAM will create a new one by default. You can  override this behavior and pass your own role by specifying the _Role_ parameter. For a complete list of the parameters you can specify for a Lambda function check the [SAM reference](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction).
 
