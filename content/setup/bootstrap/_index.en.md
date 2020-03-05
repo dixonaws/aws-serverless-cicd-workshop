@@ -6,7 +6,7 @@ weight = 10
 
 One of the tools this workshop relies on, is the AWS SAM Command Line Interface. However, we need a newer version 
 than what Cloud9 has pre-installed. The version we are targetting is **SAM CLI, version 0.31.1 or greater**. We will also need
-to install a JDK and Maven (tested with Amazon Corretto Java 11(.)
+to install a JDK and Maven (tested with Amazon Corretto Java 11).
 
 ### Bootstrap Script
 
