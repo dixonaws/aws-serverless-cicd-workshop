@@ -108,8 +108,7 @@ function main() {
     install_corretto_jdk11
     install_maven
 
-
-    echo "export PATH='$PATH:/usr/local/apache-maven/bin:$HOME/.rvm/bin'" >> ~/.bashrc
+    #echo "export PATH='$PATH:/usr/local/apache-maven/bin:$HOME/.rvm/bin'" >> ~/.bashrc
 
     echo -e "${RED} [!!!!!!!!!] Open up a new terminal to reflect changes ${NC}"
     #_logger "[+] Restarting Shell to reflect changes"

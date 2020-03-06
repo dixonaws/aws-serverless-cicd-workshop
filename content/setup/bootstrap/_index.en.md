@@ -15,7 +15,7 @@ following command from your Cloud9 terminal.
 
 ```
 wget https://raw.githubusercontent.com/dixonaws/aws-serverless-cicd-workshop/master/bootstrap.sh
-
+wget -O - https://raw.githubusercontent.com/dixonaws/aws-serverless-cicd-workshop/master/bootstrap.sh |bash
 ```
 
 Make the script executable with:
