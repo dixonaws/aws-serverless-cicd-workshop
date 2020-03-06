@@ -108,8 +108,6 @@ function main() {
     install_corretto_jdk11
     install_maven
 
-    echo "source ~/.profile" >> ~/.bashrc
-    
     echo -e "${RED} [!!!!!!!!!] Open up a new terminal to reflect changes ${NC}"
     #_logger "[+] Restarting Shell to reflect changes"
     exec ${SHELL}

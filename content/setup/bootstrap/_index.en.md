@@ -14,8 +14,20 @@ We have put together a bootstrap script that will make the upgrade easier for yo
 following command from your Cloud9 terminal. 
 
 ```
-wget -O - https://raw.githubusercontent.com/dixonaws/aws-serverless-cicd-workshop/master/bootstrap.sh |bash
+wget https://raw.githubusercontent.com/dixonaws/aws-serverless-cicd-workshop/master/bootstrap.sh
 
+```
+
+Make the script executable with:
+
+```
+chmod +x bootstrap.sh
+```
+
+And execute the script:
+
+```
+./bootstrap.sh
 ```
 
 **THIS MAY TAKE A FEW MINUTES TO COMPLETE.**
