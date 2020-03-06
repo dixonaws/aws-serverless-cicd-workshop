@@ -8,9 +8,9 @@ Before we run the application locally, we need to build it. The dependencies are
 In general, dependencies are defined in a file that varies depending on the runtime, for example _package.json_ for NodeJS 
 projects or _requirements.txt_ for Python ones. 
 
-In the terminal, go into the `sam-app/HelloWorldFunction` directory (the directory that contains the pom.xml file).
+In the terminal, go into the `sam-app` directory (the directory that contains the template.yaml file).
 ```
-cd sam-app/HelloWorldFunction
+cd ~/environment/sam-app
 ```
 
 And install the dependencies:

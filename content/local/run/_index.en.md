@@ -9,7 +9,7 @@ individual Lambda function or **2)** By running a local HTTP server that simulat
 this workshop, we will focus on number 2, but you can learn about invoking individual 
 functions in the [SAM Local Invoke reference](https://docs.aws.amazon.com/en_pv/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-invoke.html).
 
-In the terminal, run the following command from the _sam-app_ directory (the directory which contains the template.yaml file:
+In the terminal, run the following command from the _sam-app_ directory (the directory which contains the template.yaml file):
 
 ```
 cd ~/environment/sam-app
@@ -40,6 +40,11 @@ Test your endpoint by running a CURL command that triggers an HTTP GET request.
 ```
 curl http://localhost:8080/hello
 ```
+
+![PreviewSamLocal](/images/screenshot-run-local-curl.png)
+
+Note that you'll see an error "Missing Authentication Token" if you do not append `/hello` to the path when invoking the API.
+
 
 #### Option B) Using a browser window
 
