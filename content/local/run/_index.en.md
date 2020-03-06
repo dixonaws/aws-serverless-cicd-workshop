@@ -4,9 +4,12 @@ date = 2019-10-02T16:36:58-07:00
 weight = 10
 +++
 
-There are 2 ways of running a Serverless app locally: **1)** By invoking an individual Lambda function or **2)** By running a local HTTP server that simulates API Gateway. For this workshop, we will focus on number 2, but you can learn about invoking individual functions in the [SAM Local Invoke reference](https://docs.aws.amazon.com/en_pv/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-invoke.html).
+There are 2 ways of running a Java Serverless app locally: **1)** By invoking an 
+individual Lambda function or **2)** By running a local HTTP server that simulates API Gateway. For 
+this workshop, we will focus on number 2, but you can learn about invoking individual 
+functions in the [SAM Local Invoke reference](https://docs.aws.amazon.com/en_pv/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-invoke.html).
 
-In the terminal, run the following command from the root directory of the _sam-app_ folder:
+In the terminal, run the following command from the _sam-app_ directory (the directory which contains the template.yaml file:
 
 ```
 cd ~/environment/sam-app
