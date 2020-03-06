@@ -16,12 +16,10 @@ cd ~/environment/sam-app
 sam local start-api --port 8080
 ```
 
-<!--
 {{% notice warning %}}   
 Error: Template file not found at /home/ec2-user/environment/sam-app/hello-world/template.yml.  
 If you got this error is because you need to run the command from the same folder level where the SAM `template.yaml` is located. That is, the root directory of the sam-app folder.
 {{% /notice %}}
--->
 
 {{% notice note %}}
 In a Cloud9 workspace, you must use port 8080, 8081 or 8082 to be able to open the URL in the local browser for preview. 
