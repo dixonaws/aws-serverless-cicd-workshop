@@ -25,5 +25,5 @@ When the build finishes successfully, you should see a new directory created in 
 ![SamBuild](/images/screenshot-sam-build.png)
 
 ### Explore the build folder
-Take a moment to explore the content of the build folder. Notice that the unit tests are automatically 
+Take a moment to explore the content of the `target` folder. Notice that the unit tests are automatically 
 excluded from it.

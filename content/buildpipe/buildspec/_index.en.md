@@ -58,8 +58,6 @@ artifacts:
 
 **Save the file**. Take a moment to understand the buildspec file.
 
-![CreateBuildspec](/images/screenshot-buildspec.png)
-
 ### Push code changes
 Commit your changes and push them to the repository.
 

@@ -56,6 +56,8 @@ mvn test
 
 Now the tests should pass:
 
+![PreviewSamLocal](/images/local-unittest-pass.png)
+
 
 {{% notice note %}}
 This project uses the [jUnit Framework](https://www.junit.org) for running the unit tests, but you can chose 
