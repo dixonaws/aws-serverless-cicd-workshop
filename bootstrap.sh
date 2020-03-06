@@ -97,7 +97,6 @@ function install_maven() {
     echo "export M2=/usr/local/apache-maven/bin" >> ~/.profile
     echo "export PATH=/usr/local/apache-maven/bin:$PATH" >> ~/.profile
     
-    
 }
 
 function main() {
@@ -108,7 +107,9 @@ function main() {
     install_corretto_jdk11
     install_maven
 
-    #echo "export PATH='$PATH:/usr/local/apache-maven/bin:$HOME/.rvm/bin'" >> ~/.bashrc
+    brew install python
+
+    echo "export PATH='$PATH:/usr/local/apache-maven/bin:$HOME/.rvm/bin'" >> ~/.bashrc
 
     echo -e "${RED} [!!!!!!!!!] Open up a new terminal to reflect changes ${NC}"
     #_logger "[+] Restarting Shell to reflect changes"
