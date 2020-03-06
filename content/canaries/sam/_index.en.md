@@ -9,14 +9,14 @@ Open the SAM template (`sam-app/template.yaml`) in your project and add the foll
 ```
 AutoPublishAlias: live
 DeploymentPreference:
-    Type: Canary10Percent5Minutes
+    Type: Linear10PercentEvery1Minute
 ```
 
 **PLEASE CHECK THE CORRECT INDENTATION, IT IS VERY IMPORTANT IN YAML FORMAT.**
 
 ### Deployment Preference Types
 
-For this workshop, we are using the _Canary10Percent5Minutes_ strategy, which means that traffic is shifted in two increments. In the first increment, only 10% of the traffic is shifted to the new Lambda version, and after 5 minutes, the remaining 90% is shifted. There are other deployment strategies you can choose in CodeDeploy:
+For this workshop, we are using the _Linear10PercentEvery1Minute_ strategy, which means that traffic is shifted to the new version in 10% increments once per 10 minutes. There are other deployment strategies you can choose in CodeDeploy:
 
 - Canary10Percent30Minutes
 - Canary10Percent5Minutes
@@ -28,7 +28,7 @@ For this workshop, we are using the _Canary10Percent5Minutes_ strategy, which me
 - Linear10PercentEvery3Minutes
 - AllAtOnce
 
-The _Linear_ strategy means that traffic is shifted in equal increments with an equal number of time interval between each increment.
+The _Linear_ strategy means that traffic is shifted in equal increments. 
 
 ### Validate the SAM template
 Run the following command on your terminal: 
