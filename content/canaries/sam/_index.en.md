@@ -28,8 +28,6 @@ For this workshop, we are using the _Linear10PercentEvery1Minute_ strategy, whic
 - Linear10PercentEvery3Minutes
 - AllAtOnce
 
-The _Linear_ strategy means that traffic is shifted in equal increments. 
-
 ### Validate the SAM template
 Run the following command on your terminal: 
 
