@@ -19,7 +19,7 @@ It should look like this:
 
 ### Deployment Preference Types
 
-For this workshop, we are using the _Canary10Percent5Minutes_ strategy, which means that traffic is shifted in two increments. In the first increment, only 10% of the traffic is shifted to the new Lambda version, and after 5 minutes, the remaining 90% is shifted. There are other deployment strategies you can choose in CodeDeploy:
+For this workshop, we are using the _Linear10PercentEvery1Minute_ strategy, which means that traffic is shifted in 10% incremements over 10 minutes. There are other deployment strategies you can choose in CodeDeploy:
 
 - Canary10Percent30Minutes
 - Canary10Percent5Minutes
