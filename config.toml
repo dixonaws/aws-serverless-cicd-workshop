@@ -14,7 +14,7 @@ pygmentsCodeFences = true
 pygmentsStyle = "monokai"
 
 [site]
-BaseURL="/index.html"
+BaseURL="https://www.dixonaws.com/serverless-java-workshop/sam.html"
 
 [params]
   editURL = "https://github.com/dixonaws/aws-serverless-cicd-workshop/tree/master/workshop/content/"
